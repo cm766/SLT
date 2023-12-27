@@ -5,6 +5,8 @@ from mediapipe.tasks.python import vision
 from matplotlib import pyplot as plt
 from mediapipe.framework.formats import landmark_pb2
 import math
+import cv2
+import numpy as np
 
 plt.rcParams.update({
     'axes.spines.top': False,
@@ -83,7 +85,7 @@ def display_batch_of_images_with_gestures_and_hand_landmarks(images, results):
     plt.subplots_adjust(wspace=SPACING, hspace=SPACING)
     plt.savefig('output_plot.png')
     plt.show()
-
+'''
 # STEP 2: Create an GestureRecognizer object.
 base_options = python.BaseOptions(model_asset_path='gesture_recognizer.task')
 options = vision.GestureRecognizerOptions(base_options=base_options)
@@ -108,3 +110,66 @@ for image_file_name in IMAGE_FILENAMES:
   results.append((top_gesture, hand_landmarks))
   print(results)
 display_batch_of_images_with_gestures_and_hand_landmarks(images, results)
+'''
+
+BaseOptions = mp.tasks.BaseOptions
+GestureRecognizer = mp.tasks.vision.GestureRecognizer
+GestureRecognizerOptions = mp.tasks.vision.GestureRecognizerOptions
+GestureRecognizerResult = mp.tasks.vision.GestureRecognizerResult
+VisionRunningMode = mp.tasks.vision.RunningMode
+
+# Create a gesture recognizer instance with the live stream mode:
+def print_result(result: GestureRecognizerResult, output_image: mp.Image, timestamp_ms: int):
+    print('gesture recognition result: {}'.format(result))
+
+options = GestureRecognizerOptions(
+    base_options=BaseOptions(model_asset_path='exported_model_072_ds1/gesture_recognizer.task'),
+    running_mode=VisionRunningMode.LIVE_STREAM,
+    result_callback=print_result)
+with GestureRecognizer.create_from_options(options) as recognizer:
+    BaseOptions = mp.tasks.BaseOptions
+GestureRecognizer = mp.tasks.vision.GestureRecognizer
+GestureRecognizerOptions = mp.tasks.vision.GestureRecognizerOptions
+GestureRecognizerResult = mp.tasks.vision.GestureRecognizerResult
+VisionRunningMode = mp.tasks.vision.RunningMode
+
+# Create a gesture recognizer instance with the live stream mode:
+def print_result(result: GestureRecognizerResult, output_image: mp.Image, timestamp_ms: int):
+    print('gesture recognition result: {}'.format(result))
+
+options = GestureRecognizerOptions(
+    base_options=BaseOptions(model_asset_path='exported_model_072_ds1/gesture_recognizer.task'),
+    running_mode=VisionRunningMode.LIVE_STREAM,
+    result_callback=print_result)
+with GestureRecognizer.create_from_options(options) as recognizer:
+    # Use OpenCV’s VideoCapture to start capturing from the webcam.
+    cap = cv2.VideoCapture(-1)
+    # Create a loop to read the latest frame from the camera using VideoCapture#read()
+    while cap.isOpened(): 
+      
+        # Capture the video frame by frame 
+        ret, frame = cap.read() 
+
+        numpy_frame_from_opencv = np.array(frame.copy())
+        frame_timestamp_ms = 5
+        # Display the resulting frame 
+        cv2.imshow('frame', frame) 
+        
+        mp_image = mp.Image(image_format=mp.ImageFormat.SRGB, data=numpy_frame_from_opencv) 
+        recognizer.recognize_async(mp_image, frame_timestamp_ms)
+        
+        if cv2.waitKey(1) & 0xFF == ord('q'): 
+            break
+    
+    # After the loop release the cap object 
+    cap.release() 
+    # Destroy all the windows 
+    cv2.destroyAllWindows()
+    # Convert the frame received from OpenCV to a MediaPipe’s Image object.
+    
+
+    # Send live image data to perform gesture recognition.
+    # The results are accessible via the `result_callback` provided in
+    # the `GestureRecognizerOptions` object.
+    # The gesture recognizer must be created with the live stream mode.
+    
