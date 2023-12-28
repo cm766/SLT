@@ -1,0 +1,15 @@
+.card-cont{
+    position: absolute;
+    top: -12.5rem;
+    left: 50% - 6.25rem;
+}
+
+.box{
+    width: 38rem;
+    height: 25rem;
+    margin: 3rem 1rem 0 0;
+}
+
+.container{
+    height: 100%;
+}
