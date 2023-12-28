@@ -7,6 +7,7 @@ from mediapipe.framework.formats import landmark_pb2
 import math
 import cv2
 import numpy as np
+import timeit
 
 plt.rcParams.update({
     'axes.spines.top': False,
@@ -151,7 +152,7 @@ with GestureRecognizer.create_from_options(options) as recognizer:
         ret, frame = cap.read() 
 
         numpy_frame_from_opencv = np.array(frame.copy())
-        frame_timestamp_ms = 5
+        frame_timestamp_ms = int(timeit.default_timer() * 1000)
         # Display the resulting frame 
         cv2.imshow('frame', frame) 
         
