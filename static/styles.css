@@ -5,11 +5,36 @@
 }
 
 .box{
-    width: 38rem;
-    height: 28.8rem;
+    width: 35rem;
+    height: 27.5rem;
     margin: 3rem 1rem 0 0;
 }
 
 .container{
     height: 100%;
 }
+
+
+video {
+    display: block;
+    transform: rotateY(180deg);
+    -webkit-transform: rotateY(180deg);
+    -moz-transform: rotateY(180deg);
+  }
+  
+  .videoView p,
+  .detectOnClick p {
+    color: #000000;
+    z-index: 2;
+  }
+  
+  .output_canvas {
+    transform: rotateY(180deg);
+    -webkit-transform: rotateY(180deg);
+    -moz-transform: rotateY(180deg);
+  }
+  .output {
+    display: none;
+    width: 100%;
+    font-size: calc(8px + 1.2vw);
+  }
