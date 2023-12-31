@@ -4,7 +4,7 @@ from keras.preprocessing.image import ImageDataGenerator
 import numpy as np
 
 # Directory containing class-specific folders
-base_dir = '1'
+base_dir = ''
 
 # Augmentation configuration
 augmentation = ImageDataGenerator(

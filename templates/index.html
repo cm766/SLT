@@ -16,15 +16,11 @@
         <nav class="navbar navbar-expand-lg bg-body-tertiary">
             <div class="container-md">
                 <a class="navbar-brand" href="#">LSA</a>
+                <button id="webcamButton" class="btn btn-outline-dark">Play</button>
             </div>
         </nav>
         <div id="liveView" class="d-flex flex-row mb-3 videoView">
-          <div class="p-2">
-            <button id="webcamButton" class="btn btn-outline-dark">
-              Play
-            </button>
-          </div>
-          <div class="d-flex flex-row flex-lg-nowrap flex-md-nowrap flex-sm-wrap justify-content-evenly align-content-center container" style="position: relative;">
+          <div class="d-flex flex-row justify-content-evenly align-content-center container" style="position: relative;">
             <div class="p-2 card box">
               <video id="webcam" class="object-fit-cover border rounded" autoplay playsinline></video>
               <canvas class="output_canvas" id="output_canvas" width="1280" height="720" style="position: absolute; left: 0.5rem; top: 0.5rem;"></canvas>
@@ -62,7 +58,9 @@
                 <div class="card-cont" style="min-height: 120px;">
                     <div class="collapse collapse-horizontal" id="collapseWidthExample">
                         <div class="card card-body" style="width: 300px;">
-                            This is some placeholder content for a horizontal collapse. It's hidden by default and shown when triggered.
+                            <p>Press play to start detecting</p>
+                            <p>Keep hand position for one second</p>
+                            <p>Stop showing your hand for a second to insert a space in the text</p>
                         </div>
                     </div>
                 </div>
@@ -87,8 +85,8 @@
                         <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
                     </div>
                     <div class="offcanvas-body">
-                        <div>
-                            I will not close if you click outside of me.
+                        <div class="d-flex justify-content-center align-content-center">
+                            <img src="../static/LSA.jpeg" width="80%">
                         </div>
                     </div>
                 </div>

@@ -18,6 +18,7 @@ let gestureRecognizer;
 let runningMode = "IMAGE";
 let enableWebcamButton;
 let webcamRunning = false;
+const boxWidth = document.getElementById("box").offsetWidth;
 const videoHeight = "26.5rem";
 const videoWidth = "34rem";
 // Before we can use HandLandmarker class we must wait for it to finish

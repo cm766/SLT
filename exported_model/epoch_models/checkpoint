@@ -1,2 +1,7 @@
+<<<<<<< HEAD
 model_checkpoint_path: "model-0035"
 all_model_checkpoint_paths: "model-0035"
+=======
+model_checkpoint_path: "model-0020"
+all_model_checkpoint_paths: "model-0020"
+>>>>>>> 9c78f3a (m)
