@@ -1,3 +1,9 @@
+@media (max-width: 576px) {
+  .container{
+    flex-wrap: wrap;
+  }
+}
+
 .card-cont{
     position: absolute;
     top: -12.5rem;
@@ -5,8 +11,8 @@
 }
 
 .box{
-    width: 35rem;
-    height: 27.5rem;
+    width: 528px;
+    height: 408px;
     margin: 3rem 1rem 0 0;
 }
 
