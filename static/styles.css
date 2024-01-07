@@ -2,6 +2,10 @@
   .container{
     flex-wrap: wrap;
   }
+
+  .box{
+    margin: 3rem 0 0 0;
+  }
 }
 
 .card-cont{
@@ -12,14 +16,13 @@
 
 .box{
     width: 528px;
-    height: 408px;
+    aspect-ratio: 33/25;
     margin: 3rem 1rem 0 0;
 }
 
 .container{
     height: 100%;
 }
-
 
 video {
     display: block;

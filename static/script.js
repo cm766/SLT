@@ -19,8 +19,9 @@ let runningMode = "IMAGE";
 let enableWebcamButton;
 let webcamRunning = false;
 
-const videoHeight = "392px";
-const videoWidth = "512px";
+let values = document.getElementById("box").getBoundingClientRect()
+let videoWidth = values["width"]; //"512px";
+let videoHeight = videoWidth -  120; //"392px";
 // Before we can use HandLandmarker class we must wait for it to finish
 // loading. Machine Learning models can be large and take a moment to
 // get everything needed to run.
@@ -43,6 +44,8 @@ const video = document.getElementById("webcam");
 const canvasElement = document.getElementById("output_canvas");
 const canvasCtx = canvasElement.getContext("2d");
 const gestureOutput = document.getElementById("gesture_output");
+const box = document.getElementById("box")
+const box2 = document.getElementById("box2")
 // Check if webcam access is supported.
 function hasGetUserMedia() {
     return !!(navigator.mediaDevices && navigator.mediaDevices.getUserMedia);
@@ -90,6 +93,8 @@ let time3 = 0;
 let time4 = 0;
 
 async function predictWebcam() {
+    console.log(videoWidth);
+    console.log(videoHeight);
     const webcamElement = document.getElementById("webcam");
     // Now let's start detecting the stream.
     if (runningMode === "IMAGE") {
@@ -106,8 +111,11 @@ async function predictWebcam() {
     const drawingUtils = new DrawingUtils(canvasCtx);
     canvasElement.style.height = videoHeight;
     webcamElement.style.height = videoHeight;
+    box.style.height = videoHeight;
+    box2.style.height = videoHeight;
     canvasElement.style.width = videoWidth;
     webcamElement.style.width = videoWidth;
+
     if (results.landmarks) {
         for (const landmarks of results.landmarks) {
             drawingUtils.drawConnectors(landmarks, GestureRecognizer.HAND_CONNECTIONS, {
