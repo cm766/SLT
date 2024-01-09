@@ -19,6 +19,7 @@ let runningMode = "IMAGE";
 let enableWebcamButton;
 let webcamRunning = false;
 
+let valuesW = document.getElementById("webcam").getBoundingClientRect()
 let values = document.getElementById("box").getBoundingClientRect()
 let videoWidth = values["width"]; //"512px";
 let videoHeight = videoWidth -  120; //"392px";
@@ -93,8 +94,8 @@ let time3 = 0;
 let time4 = 0;
 
 async function predictWebcam() {
-    console.log(videoWidth);
-    console.log(videoHeight);
+    valuesW = document.getElementById("webcam").getBoundingClientRect()
+    
     const webcamElement = document.getElementById("webcam");
     // Now let's start detecting the stream.
     if (runningMode === "IMAGE") {
@@ -109,22 +110,23 @@ async function predictWebcam() {
     canvasCtx.save();
     canvasCtx.clearRect(0, 0, canvasElement.width, canvasElement.height);
     const drawingUtils = new DrawingUtils(canvasCtx);
-    canvasElement.style.height = videoHeight;
+    canvasElement.height = valuesW["height"];
     webcamElement.style.height = videoHeight;
     box.style.height = videoHeight;
     box2.style.height = videoHeight;
-    canvasElement.style.width = videoWidth;
+    canvasElement.width = valuesW["width"];
     webcamElement.style.width = videoWidth;
 
     if (results.landmarks) {
         for (const landmarks of results.landmarks) {
             drawingUtils.drawConnectors(landmarks, GestureRecognizer.HAND_CONNECTIONS, {
-                color: "#00FF00",
-                lineWidth: 5
+                color: "#4dff88",
+                lineWidth: 3
             });
             drawingUtils.drawLandmarks(landmarks, {
-                color: "#FF0000",
-                lineWidth: 2
+                color: "#ff8533",
+                lineWidth: 0.03,
+                radius: 3 
             });
         }
     }

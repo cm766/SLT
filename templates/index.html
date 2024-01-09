@@ -22,11 +22,11 @@
         <div id="liveView" class="d-flex flex-column mb-3 videoView">  
           <div class="d-flex flex-row flex-lg-nowrap flex-md-wrap flex-sm-wrap justify-content-evenly align-content-center container" style="position: relative;">
             <div class="p-2 card box" id="box">
-              <video id="webcam" class="object-fit-cover border rounded" autoplay playsinline></video>
+              <video id="webcam" class="object-fit-cover rounded" autoplay playsinline></video>
               <canvas class="output_canvas" id="output_canvas" style="position: absolute; left: 0.5rem; top: 0.5rem;"></canvas>
             </div>
             <div class="p-2 card box" id="box2">
-              <p id="gesture_output" class="output">
+              <p id="gesture_output" class="output fs-3">
             </div>
           </div>
         </div>
@@ -58,7 +58,9 @@
                 <div class="card-cont" style="min-height: 120px;">
                     <div class="collapse collapse-horizontal" id="collapseWidthExample">
                         <div class="card card-body" style="width: 300px;">
-                            This is some placeholder content for a horizontal collapse. It's hidden by default and shown when triggered.
+                            <p>Press play to start detecting</p>
+                            <p>Keep hand position for one second</p>
+                            <p>Stop showing your hand for a second to insert a space in the text</p>
                         </div>
                     </div>
                 </div>
@@ -82,9 +84,9 @@
                         <h5 class="offcanvas-title" id="staticBackdropLabel">Offcanvas</h5>
                         <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
                     </div>
-                    <div class="offcanvas-body">
-                        <div>
-                            I will not close if you click outside of me.
+                    <div class="offcanvas-body d-flex">
+                        <div class="d-flex justify-content-center align-content-center">
+                            <img src="../static/LSA.jpeg" width="100%">
                         </div>
                     </div>
                 </div>
