@@ -30,7 +30,7 @@ const createGestureRecognizer = async () => {
     const vision = await FilesetResolver.forVisionTasks("https://cdn.jsdelivr.net/npm/@mediapipe/tasks-vision@0.10.3/wasm");
     gestureRecognizer = await GestureRecognizer.createFromOptions(vision, {
         baseOptions: {
-            modelAssetPath: "static/model_877/gesture_recognizer.task",
+            modelAssetPath: "static/model_877/exported_model_877/gesture_recognizer.task",
             delegate: "GPU"
         },
         runningMode: runningMode,
@@ -141,8 +141,8 @@ async function predictWebcam() {
         gestureOutput.style.width = videoWidth;
         const categoryName = results.gestures[0][0].categoryName;
         const categoryScore = parseFloat(results.gestures[0][0].score * 100).toFixed(2);
-        const handedness = results.handednesses[0][0].displayName;
-       
+        // const handedness = results.handednesses[0][0].displayName;
+        const nHands = results.gestures.length
         const char = categoryName.charAt(0);
         
         if (time1 === 0) {
@@ -150,22 +150,21 @@ async function predictWebcam() {
             char0 = char;
         }
         time2 = Date.now()
-        
+
         if (time2 - time1 > 1500) {
             if (char0 === char) {
-                let c = correctPrediction(char0);
+                let c = correctPrediction(char0, nHands);
                 if (text.length === 0) {
                     text = c.toUpperCase();
                 }
                 else {
-                    correctPrediction(char);
                     text += c.toLowerCase(); 
                 }
             }
             time1 = 0; 
         }
         
-        gestureOutput.innerText = `${text}  |${char} ${categoryScore}`;
+        gestureOutput.innerText = `${text}  |${correctPrediction(char, nHands)} ${categoryScore}`;
     }
     else {
         gestureOutput.style.display = "block";
