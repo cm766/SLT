@@ -1,0 +1,53 @@
+@media (max-width: 576px) {
+  .container{
+    flex-wrap: wrap;
+  }
+
+  .box{
+    margin-right: 0!important;
+    aspect-ratio: 33/25;
+    z-index: 10;
+  }
+
+}
+
+.card-cont{
+    position: absolute;
+    top: -12.5rem;
+    left: 50% - 6.25rem;
+}
+
+.box{
+    width: 528px;
+    aspect-ratio: 33/25;
+    margin: 3rem 1rem 0 0;
+}
+
+.container{
+    height: 100%;
+}
+
+video {
+    display: block;
+    transform: rotateY(180deg);
+    -webkit-transform: rotateY(180deg);
+    -moz-transform: rotateY(180deg);
+  }
+  
+  .videoView p,
+  .detectOnClick p {
+    color: #000000;
+    z-index: 2;
+  }
+  
+  .output_canvas {
+    transform: rotateY(180deg);
+    -webkit-transform: rotateY(180deg);
+    -moz-transform: rotateY(180deg);
+  }
+  .output {
+    display: none;
+    width: 100%;
+    overflow: auto;
+    max-height: -webkit-fill-available
+  }
