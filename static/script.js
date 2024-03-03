@@ -26,7 +26,7 @@ let videoHeight = videoWidth -  120; //"392px";
 // Before we can use HandLandmarker class we must wait for it to finish
 // loading. Machine Learning models can be large and take a moment to
 // get everything needed to run.
-const createGestureRecognizer = async () => {
+const loadGestureRecognizer = async () => {
     const vision = await FilesetResolver.forVisionTasks("https://cdn.jsdelivr.net/npm/@mediapipe/tasks-vision@0.10.3/wasm");
     gestureRecognizer = await GestureRecognizer.createFromOptions(vision, {
         baseOptions: {
@@ -39,7 +39,7 @@ const createGestureRecognizer = async () => {
     demosSection.classList.remove("invisible");
 };
 
-createGestureRecognizer();
+loadGestureRecognizer();
 /********************************************************************
 // Demo 2: Continuously grab image from webcam stream and detect it.
 ********************************************************************/
