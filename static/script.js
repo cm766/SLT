@@ -1,31 +1,26 @@
-// Copyright 2023 The MediaPipe Authors.
-
-// Licensed under the Apache License, Version 2.0 (the "License");
-// you may not use this file except in compliance with the License.
-// You may obtain a copy of the License at
-
-//      http://www.apache.org/licenses/LICENSE-2.0
-
-// Unless required by applicable law or agreed to in writing, software
-// distributed under the License is distributed on an "AS IS" BASIS,
-// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-// See the License for the specific language governing permissions and
-// limitations under the License.
+// Import mediapipe library
 import { GestureRecognizer, FilesetResolver, DrawingUtils } from "https://cdn.jsdelivr.net/npm/@mediapipe/tasks-vision@0.10.3";
-import {correctPrediction} from "./helpers.js"
+// Due to model innacuracy corrections are needed
+import {correctPrediction, drawButtons, checkClickButtons} from "./helpers.js"
 
 let gestureRecognizer;
-let runningMode = "IMAGE";
-let enableWebcamButton;
+let webcamButton;
 let webcamRunning = false;
 
-let valuesW = document.getElementById("webcam").getBoundingClientRect()
-let values = document.getElementById("box").getBoundingClientRect()
-let videoWidth = values["width"]; //"512px";
-let videoHeight = videoWidth -  120; //"392px";
-// Before we can use HandLandmarker class we must wait for it to finish
-// loading. Machine Learning models can be large and take a moment to
-// get everything needed to run.
+// Set values for stream size
+const webcam = document.getElementById("webcam"); 
+let webcamValues = webcam.getBoundingClientRect()
+let videoWidth = document.getElementById("box").getBoundingClientRect()["width"];
+let videoHeight = videoWidth -  120;
+
+const video = document.getElementById("webcam");
+const canvasElement = document.getElementById("output_canvas");
+const canvasCtx = canvasElement.getContext("2d");
+const gestureOutput = document.getElementById("gesture_output");
+const box = document.getElementById("box")
+const box2 = document.getElementById("box2")
+
+// Wait for Gesture Recognizer to load
 const loadGestureRecognizer = async () => {
     const vision = await FilesetResolver.forVisionTasks("https://cdn.jsdelivr.net/npm/@mediapipe/tasks-vision@0.10.3/wasm");
     gestureRecognizer = await GestureRecognizer.createFromOptions(vision, {
@@ -33,92 +28,76 @@ const loadGestureRecognizer = async () => {
             modelAssetPath: "static/model_877/exported_model_877/gesture_recognizer.task",
             delegate: "GPU"
         },
-        runningMode: runningMode,
-        numHands: 2
     });
-    demosSection.classList.remove("invisible");
+
+    await gestureRecognizer.setOptions({ runningMode: "VIDEO", numHands: 2 });
+
 };
 
-loadGestureRecognizer();
-/********************************************************************
-// Demo 2: Continuously grab image from webcam stream and detect it.
-********************************************************************/
-const video = document.getElementById("webcam");
-const canvasElement = document.getElementById("output_canvas");
-const canvasCtx = canvasElement.getContext("2d");
-const gestureOutput = document.getElementById("gesture_output");
-const box = document.getElementById("box")
-const box2 = document.getElementById("box2")
-// Check if webcam access is supported.
-function hasGetUserMedia() {
-    return !!(navigator.mediaDevices && navigator.mediaDevices.getUserMedia);
-}
-// If webcam supported, add event listener to button for when user
-// wants to activate it.
-if (hasGetUserMedia()) {
-    enableWebcamButton = document.getElementById("webcamButton");
-    enableWebcamButton.addEventListener("click", enableCam);
-}
-else {
-    console.warn("getUserMedia() is not supported by your browser");
-}
-// Enable the live webcam view and start detection.
-function enableCam(event) {
+function enablewebcam(event) {
+    
+    // Check if gesture recognizer is loaded
     if (!gestureRecognizer) {
         alert("Please wait for gestureRecognizer to load");
         return;
     }
+
+    // Check if getUserMedia() is supported
+    if (!navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
+        alert("getUserMedia() is not supported by your browser");
+        return;
+    }
+
     if (webcamRunning === true) {
         webcamRunning = false;
-        enableWebcamButton.innerText = "Play";
+        webcamButton.innerText = "Play";
+        
+        if (video.srcObject && video.srcObject.getTracks) {
+            video.srcObject.getTracks().forEach(track => track.stop());
+        }
     }
     else {
         webcamRunning = true;
-        enableWebcamButton.innerText = "Stop";  
+        webcamButton.innerText = "Stop";  
+        // Activate the webcam stream.
+        navigator.mediaDevices.getUserMedia({video: true}).then(function (stream) {
+            video.srcObject = stream;
+            video.addEventListener("loadeddata", predict);
+        });
     }
-    // getUsermedia parameters.
-    const constraints = {
-        video: true
-    };
-    // Activate the webcam stream.
-    navigator.mediaDevices.getUserMedia(constraints).then(function (stream) {
-        video.srcObject = stream;
-        video.addEventListener("loadeddata", predictWebcam);
-    });
+
+    
 }
-let lastVideoTime = -1;
+
+// Time manager variables
+let lastFrameTime = -1;
 let results = undefined;
-let text = ""
+let text = "";
 let char0 = "";    
 let time1 = 0;
 let time2 = 0;
-let time3 = 0;
-let time4 = 0;
 
-async function predictWebcam() {
-    valuesW = document.getElementById("webcam").getBoundingClientRect()
-    
-    const webcamElement = document.getElementById("webcam");
-    // Now let's start detecting the stream.
-    if (runningMode === "IMAGE") {
-        runningMode = "VIDEO";
-        await gestureRecognizer.setOptions({ runningMode: "VIDEO", numHands: 2 });
-    }
+
+async function predict() {
+
+    webcamValues = webcam.getBoundingClientRect()
+
     let nowInMs = Date.now();
-    if (video.currentTime !== lastVideoTime) {
-        lastVideoTime = video.currentTime;
+    if (video.currentTime !== lastFrameTime) {
+        lastFrameTime = video.currentTime;
         results = gestureRecognizer.recognizeForVideo(video, nowInMs);
     }
 
+    // Update size
     canvasCtx.save();
     canvasCtx.clearRect(0, 0, canvasElement.width, canvasElement.height);
     const drawingUtils = new DrawingUtils(canvasCtx);
-    canvasElement.height = valuesW["height"];
-    webcamElement.style.height = videoHeight;
+    canvasElement.height = webcamValues["height"];
+    webcam.style.height = videoHeight;
     box.style.height = videoHeight;
     box2.style.height = videoHeight;
-    canvasElement.width = valuesW["width"];
-    webcamElement.style.width = videoWidth;
+    canvasElement.width = webcamValues["width"];
+    webcam.style.width = videoWidth;
 
     if (results.landmarks) {
         for (const landmarks of results.landmarks) {
@@ -133,6 +112,24 @@ async function predictWebcam() {
             });
         }
     }
+    const buttons = [{
+        positionX: 15,
+        positionY: 25,
+        sizeX: 50,
+        sizeY: 40,
+        icon: 'static/space-key.svg',
+        borderLine: 2,
+    },
+    {
+        positionX: 80,
+        positionY: 25,
+        sizeX: 50,
+        sizeY: 40,
+        icon: 'static/backspace-thin.svg',
+        borderLine: 2,
+    }]
+
+    drawButtons(canvasCtx, buttons);
     canvasCtx.restore();
 
     // If sign is detected for more than 5" is added to text
@@ -147,14 +144,15 @@ async function predictWebcam() {
         
         if (time1 === 0) {
             time1 = Date.now()
-            char0 = char;
+            char0 = char; 
         }
         time2 = Date.now()
 
-        if (time2 - time1 > 1500) {
+        if (time2 - time1 > 1000) {
             if (char0 === char) {
                 let c = correctPrediction(char0, nHands);
-                if (text.length === 0) {
+                if (text === "") {
+                    
                     text = c.toUpperCase();
                 }
                 else {
@@ -164,18 +162,31 @@ async function predictWebcam() {
             time1 = 0; 
         }
         
+        checkClickButtons(results.landmarks[0][8], buttons);
+        // CREATE ANOTHER ELEMENT TO SHOW PREDICTED CHAR
         gestureOutput.innerText = `${text}  |${correctPrediction(char, nHands)} ${categoryScore}`;
     }
+
+    // MIGHT BE MODIFIED
     else {
         gestureOutput.style.display = "block";
-        time4 = Date.now()
-        if (time4 - time3 > 2000) {
-            text += " "
-            time3 = 0
-        }
     }
     // Call this function again to keep predicting when the browser is ready.
     if (webcamRunning === true) {
-        window.requestAnimationFrame(predictWebcam);
+        window.requestAnimationFrame(predict);
     }
 }
+
+
+loadGestureRecognizer();
+
+
+
+// If webcam supported, add event listener to webcam activation
+webcamButton = document.getElementById("webcamButton");
+webcamButton.addEventListener("click", enablewebcam);
+
+
+
+
+
