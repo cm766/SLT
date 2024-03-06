@@ -38,21 +38,21 @@ export function drawButtons(canvas, buttonsDict) {
 
     for (let i in buttonsDict) {
 
-        canvas.fillStyle = 'blue';
+        canvas.fillStyle = buttonsDict[i]["color"];
         canvas.fillRect(buttonsDict[i]["positionX"], buttonsDict[i]["positionY"], buttonsDict[i]["sizeX"], buttonsDict[i]["sizeY"]);
 
         let img = new Image()
         img.src = buttonsDict[i]["icon"]
         
         canvas.lineWidth = 2;
-        canvas.strokeStyle = 'black'; 
-        canvas.strokeRect(buttonsDict[i]["positionX"], buttonsDict[i]["positionY"], buttonsDict[i]["sizeX"], buttonsDict[i]["sizeY"]);
+       // canvas.strokeStyle = 'black'; 
+       // canvas.strokeRect(buttonsDict[i]["positionX"], buttonsDict[i]["positionY"], buttonsDict[i]["sizeX"], buttonsDict[i]["sizeY"]);
 
         canvas.drawImage(img, buttonsDict[i]["positionX"] + 5, buttonsDict[i]["positionY"] + 1);
     }
 }
 
-// CHECKK DOES NOT WORK
+
 export function checkClickButtons (pointerLandmark, buttonsDict, canvasW, canvasH) {
      let landmarkX = pointerLandmark["x"] * canvasW;
      let landmarkY = pointerLandmark["y"] * canvasH;
@@ -60,10 +60,15 @@ export function checkClickButtons (pointerLandmark, buttonsDict, canvasW, canvas
      for (let i in buttonsDict) {
         if (buttonsDict[i]["positionX"] < landmarkX && buttonsDict[i]["positionX"] + buttonsDict[i]["sizeX"] > landmarkX) {
             if (buttonsDict[i]["positionY"] < landmarkY && buttonsDict[i]["positionY"] + buttonsDict[i]["sizeY"] > landmarkY) {
-                console.log(i);
                 return [true, i];
             }
         }
      }
      return [false];
+}
+
+export function clickedButton (buttonIndex, buttonsDict, newColor) {
+    for (let i in buttonIndex) {
+        buttonsDict[buttonIndex[i]]["color"] = newColor;
+    }    
 }

@@ -1,7 +1,7 @@
 // Import mediapipe library
 import { GestureRecognizer, FilesetResolver, DrawingUtils } from "https://cdn.jsdelivr.net/npm/@mediapipe/tasks-vision@0.10.3";
 // Due to model innacuracy corrections are needed
-import {correctPrediction, drawButtons, checkClickButtons} from "./helpers.js"
+import {correctPrediction, drawButtons, checkClickButtons, clickedButton} from "./helpers.js"
 
 let gestureRecognizer;
 let webcamButton;
@@ -51,9 +51,9 @@ function enablewebcam(event) {
     if (webcamRunning === true) {
         webcamRunning = false;
         webcamButton.innerText = "Play";
-        
+   
         if (video.srcObject && video.srcObject.getTracks) {
-            video.srcObject.getTracks().forEach(track => track.stop());
+            video.srcObject.getTracks().forEach(track => track.stop()); 
         }
     }
     else {
@@ -76,8 +76,26 @@ let text = "";
 let char0 = "";    
 let time1 = 0;
 let time2 = 0;
+let button = false;
 
-
+const buttons = [{
+        positionX: 15,
+        positionY: 25,
+        sizeX: 50,
+        sizeY: 40,
+        icon: 'static/space-key.svg',
+        borderLine: 2,
+        color: "blue"
+    },
+    {
+        positionX: 80,
+        positionY: 25,
+        sizeX: 50,
+        sizeY: 40,
+        icon: 'static/backspace-thin.svg',
+        borderLine: 2,
+        color: "blue"
+    }]
 async function predict() {
 
     webcamValues = webcam.getBoundingClientRect()
@@ -112,22 +130,7 @@ async function predict() {
             });
         }
     }
-    const buttons = [{
-        positionX: 15,
-        positionY: 25,
-        sizeX: 50,
-        sizeY: 40,
-        icon: 'static/space-key.svg',
-        borderLine: 2,
-    },
-    {
-        positionX: 80,
-        positionY: 25,
-        sizeX: 50,
-        sizeY: 40,
-        icon: 'static/backspace-thin.svg',
-        borderLine: 2,
-    }]
+    
 
     drawButtons(canvasCtx, buttons);
     canvasCtx.restore();
@@ -165,10 +168,26 @@ async function predict() {
         let checkClick = checkClickButtons(results.landmarks[0][8], buttons, canvasElement.width, canvasElement.height);
         
         if (checkClick[0]) {
-            console.log(checkClick[1]);
+            if (!button) {
+                button = true;
+                console.log(checkClick[1]);
+                if (checkClick[1] === "0") {
+                    text += " ";
+                    clickedButton([0], buttons, "red");
+                }
+                else if (checkClick[1] === "1") {
+                    if (text.length > 0) {
+                        text = text.slice(0, -1);
+                    }
+                    clickedButton([1], buttons, "red");
+                }
+            }
         }
         else {
-            console.log(checkClick[0]);
+            if (button) {
+                button = false;
+                clickedButton([0, 1], buttons, "blue");
+            }
         }
         // CREATE ANOTHER ELEMENT TO SHOW PREDICTED CHAR
         gestureOutput.innerText = `${text}  |${correctPrediction(char, nHands)} ${categoryScore}`;
