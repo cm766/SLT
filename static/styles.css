@@ -1,5 +1,5 @@
 @media (max-width: 576px) {
-  .container{
+  .wrap{
     flex-wrap: wrap;
   }
 
@@ -7,6 +7,10 @@
     margin-right: 0!important;
     aspect-ratio: 33/25;
     z-index: 10;
+  }
+
+  .menu {
+    min-width: 12rem;
   }
 
 }
@@ -21,10 +25,23 @@
     width: 528px;
     aspect-ratio: 33/25;
     margin: 3rem 1rem 0 0;
+    max-width: 28rem;
+}
+
+.menu{
+  max-width: 25rem;
+  background-color: #a0a0a0;
+  border: 10px solid #a0a0a0; 
+  border-radius: 30px;
 }
 
 .container{
     height: 100%;
+}
+
+.padding{
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
 }
 
 video {
@@ -34,20 +51,20 @@ video {
     -moz-transform: rotateY(180deg);
   }
   
-  .videoView p,
-  .detectOnClick p {
-    color: #000000;
-    z-index: 2;
-  }
-  
-  .output_canvas {
-    transform: rotateY(180deg);
-    -webkit-transform: rotateY(180deg);
-    -moz-transform: rotateY(180deg);
-  }
-  .output {
-    display: none;
-    width: 100%;
-    overflow: auto;
-    max-height: -webkit-fill-available
-  }
+.videoView p,
+.detectOnClick p {
+  color: #000000;
+  z-index: 2;
+}
+
+.output_canvas {
+  transform: rotateY(180deg);
+  -webkit-transform: rotateY(180deg);
+  -moz-transform: rotateY(180deg);
+}
+.output {
+  display: none;
+  width: 100%;
+  overflow: auto;
+  max-height: -webkit-fill-available;
+}

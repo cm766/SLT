@@ -83,7 +83,7 @@ const buttons = [{
         positionY: 25,
         sizeX: 50,
         sizeY: 40,
-        icon: 'static/space-key.svg',
+        icon: 'static/icons/space-key.svg',
         borderLine: 2,
         color: "blue"
     },
@@ -92,7 +92,7 @@ const buttons = [{
         positionY: 25,
         sizeX: 50,
         sizeY: 40,
-        icon: 'static/backspace-thin.svg',
+        icon: 'static/icons/backspace-thin.svg',
         borderLine: 2,
         color: "blue"
     }]

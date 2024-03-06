@@ -12,22 +12,18 @@
         
     </head>
     <body> 
-        <nav class="navbar navbar-expand-lg bg-body-tertiary">
-            <div class="container-md">
-                <a class="navbar-brand" href="#">LSA</a>
-                <button id="webcamButton" class="btn btn-outline-dark">Play</button>
-            </div>
+        <nav class="navbar navbar-expand-lg bg-body-tertiary justify-content-between padding">
+            <a class="navbar-brand" href="#">LSA</a>
+            <button id="webcamButton" class="btn btn-outline-dark">Play</button>
         </nav>
-        <div id="liveView" class="d-flex flex-column mb-3 videoView">  
-          <div class="d-flex flex-row flex-lg-nowrap flex-md-wrap flex-sm-wrap justify-content-evenly align-content-center container" style="position: relative;">
+        <div class="d-flex flex-row justify-content-evenly flex-sm-wrap padding wrap">  
             <div class="p-2 card box" id="box">
-              <video id="webcam" class="object-fit-cover rounded" autoplay playsinline></video>
-              <canvas class="output_canvas" id="output_canvas" style="position: absolute; left: 0.5rem; top: 0.5rem;"></canvas>
+                <video id="webcam" class="object-fit-cover rounded" autoplay playsinline></video>
+                <canvas class="output_canvas" id="output_canvas" style="position: absolute; left: 0.5rem; top: 0.5rem;"></canvas>
             </div>
             <div class="p-2 card box" id="box2">
-              <p id="gesture_output" class="output fs-3">
+                <p id="gesture_output" class="output fs-3">
             </div>
-          </div>
         </div>
         <ul class="nav fixed-bottom start-50 translate-middle justify-content-center menu">
             <li class="nav-item">
