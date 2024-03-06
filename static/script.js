@@ -162,7 +162,14 @@ async function predict() {
             time1 = 0; 
         }
         
-        checkClickButtons(results.landmarks[0][8], buttons);
+        let checkClick = checkClickButtons(results.landmarks[0][8], buttons, canvasElement.width, canvasElement.height);
+        
+        if (checkClick[0]) {
+            console.log(checkClick[1]);
+        }
+        else {
+            console.log(checkClick[0]);
+        }
         // CREATE ANOTHER ELEMENT TO SHOW PREDICTED CHAR
         gestureOutput.innerText = `${text}  |${correctPrediction(char, nHands)} ${categoryScore}`;
     }

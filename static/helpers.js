@@ -53,15 +53,17 @@ export function drawButtons(canvas, buttonsDict) {
 }
 
 // CHECKK DOES NOT WORK
-export function checkClickButtons (pointerLandmark, buttonsDict) {
-     let landmarkX = pointerLandmark["x"];
-     let landmarkY = pointerLandmark["y"];
+export function checkClickButtons (pointerLandmark, buttonsDict, canvasW, canvasH) {
+     let landmarkX = pointerLandmark["x"] * canvasW;
+     let landmarkY = pointerLandmark["y"] * canvasH;
 
      for (let i in buttonsDict) {
         if (buttonsDict[i]["positionX"] < landmarkX && buttonsDict[i]["positionX"] + buttonsDict[i]["sizeX"] > landmarkX) {
-            if (buttonsDict[i]["positionY"] < landmarkY && buttonsDict[i]["positionY"] + buttonsDict[i]["sizeY"] > landmarkX) {
-                console.log(buttonsDict[i]["positionX"]);
+            if (buttonsDict[i]["positionY"] < landmarkY && buttonsDict[i]["positionY"] + buttonsDict[i]["sizeY"] > landmarkY) {
+                console.log(i);
+                return [true, i];
             }
         }
      }
+     return [false];
 }
