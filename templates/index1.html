@@ -10,26 +10,40 @@
         <link href="/static/styles.css" rel="stylesheet">
         <script type="module" src="static/script.js"></script>
         
+
     </head>
     <body> 
-        <nav class="navbar navbar-expand-lg bg-body-tertiary justify-content-between padding">
-            <a class="navbar-brand" href="#">LSA</a>
-            <button id="webcamButton" class="btn btn-outline-dark">Play</button>
+        <nav class="navbar navbar-expand-lg bg-body-tertiary justify-content-start padding">
+            <a class="navbar-brand" href="#" type="button" data-bs-toggle="collapse" data-bs-target="#home" aria-expanded="false" aria-controls="home">LSA</a>
+            <!--<button id="webcamButton" class="btn btn-outline-dark">Play</button>-->
+            <a id="home" class="collapse collapse-horizontal" href="/">Home</a>
         </nav>
-        <div class="d-flex flex-row justify-content-evenly flex-sm-wrap padding wrap">  
-            <div class="p-2 card box" id="box">
-                <video id="webcam" class="object-fit-cover rounded" autoplay playsinline></video>
-                <canvas class="output_canvas" id="output_canvas" style="position: absolute; left: 0.5rem; top: 0.5rem;"></canvas>
+        <div class="d-flex flex-row">
+            <div id="abc" class="collapse">
+                <img src="static/abc/b.png" class="abc">
+                <img src="static/abc/e.png" class="abc">
+                <img src="static/abc/g.png" class="abc">
             </div>
-            <div class="p-2 card box" id="box2">
-                <p id="gesture_output" class="output fs-3">
+            <div class="d-flex flex-row justify-content-evenly padding wrap">  
+                
+                <div id="abcLg" class="hiden">
+                    <img id="aLg" src="">
+                </div>
+                
+                <div class="p-2 card box" id="box">
+                    <video id="webcam" class="object-fit-cover rounded" autoplay playsinline></video>
+                    <canvas class="output_canvas" id="output_canvas" style="position: absolute; left: 0.5rem; top: 0.5rem;"></canvas>
+                </div>
+                <div class="p-2 card box" id="box2">
+                    <p id="gesture_output" class="output fs-3">
+                </div>
             </div>
         </div>
         <ul class="nav fixed-bottom start-50 translate-middle justify-content-center menu">
             <li class="nav-item">
-                <a class="btn btn-link" href="/">     
-                    <img src="static/icons/home.svg">                                               
-                </a>
+                <button id="webcamButton" class="btn btn-link">
+                    <img id="webcamButtonImg" src="static/icons/play1.svg">
+                </button>
             </li>
             <li class="nav-item">
                 <button class="btn btn-link" type="button" data-bs-toggle="collapse" data-bs-target="#collapseWidthExample" aria-expanded="false" aria-controls="collapseWidthExample">
@@ -46,7 +60,7 @@
                 </div>
             </li>
             <li class="nav-item">
-                <button class="btn btn-link" type="button" data-bs-toggle="offcanvas" data-bs-target="#staticBackdrop" aria-controls="staticBackdrop">
+                <button class="btn btn-link" type="button" data-bs-toggle="collapse" data-bs-target="#abc" aria-expanded="false" aria-controls="abc">
                     <img src="static/icons/hand.svg">
                 </button>
             </li>

@@ -1,8 +1,4 @@
 @media (max-width: 576px) {
-  .wrap{
-    flex-wrap: wrap;
-  }
-
   .box{
     margin-right: 0!important;
     aspect-ratio: 33/25;
@@ -15,14 +11,54 @@
 
 }
 
+@media (max-width: 768px) { 
+  .wrap{
+    flex-wrap: wrap;
+  }
+ }
+
+#home{
+  color: #000000;
+  text-decoration: none;
+}
+
+#home:hover{
+  color: #a0a0a0;
+}
+
+#abcLg{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+}
+
+#aLg{
+  max-width: 10rem;
+}
+
+.hiden{
+  display: none;
+}
+
+.abc{
+  max-width: 3.125rem;
+}
+
+#abc{
+  position: absolute;
+  z-index: 50;
+  max-width: 4rem;
+  overflow: scroll;
+}
+
 .card-cont{
     position: absolute;
     top: -12.5rem;
-    left: 50% - 6.25rem;
+    left: calc(50% - 6.25rem);
 }
 
 .box{
-    width: 528px;
+    width: 33rem;
     aspect-ratio: 33/25;
     margin: 3rem 1rem 0 0;
     max-width: 28rem;

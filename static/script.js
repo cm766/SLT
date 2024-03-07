@@ -6,6 +6,7 @@ import {correctPrediction, drawButtons, checkClickButtons, clickedButton} from "
 let gestureRecognizer;
 let webcamButton;
 let webcamRunning = false;
+const webcamButtonImg = document.getElementById("webcamButtonImg");
 
 // Set values for stream size
 const webcam = document.getElementById("webcam"); 
@@ -50,7 +51,7 @@ function enablewebcam(event) {
 
     if (webcamRunning === true) {
         webcamRunning = false;
-        webcamButton.innerText = "Play";
+        webcamButtonImg.src = "static/icons/play1.svg"
    
         if (video.srcObject && video.srcObject.getTracks) {
             video.srcObject.getTracks().forEach(track => track.stop()); 
@@ -58,7 +59,7 @@ function enablewebcam(event) {
     }
     else {
         webcamRunning = true;
-        webcamButton.innerText = "Stop";  
+        webcamButtonImg.src = "static/icons/pause1.svg"  
         // Activate the webcam stream.
         navigator.mediaDevices.getUserMedia({video: true}).then(function (stream) {
             video.srcObject = stream;
@@ -83,7 +84,7 @@ const buttons = [{
         positionY: 25,
         sizeX: 50,
         sizeY: 40,
-        icon: 'static/icons/space-key.svg',
+        icon: 'static/icons/spacebar.svg',
         borderLine: 2,
         color: "blue"
     },
@@ -212,7 +213,33 @@ loadGestureRecognizer();
 webcamButton = document.getElementById("webcamButton");
 webcamButton.addEventListener("click", enablewebcam);
 
+/*
+const abcImgs = document.querySelectorAll(".abc");
+const imgLg = document.getElementById("aLg");
+const divLg = document.getElementById("abcLg");
 
+abcImgs.forEach(img => {
+    img.addEventListener("mouseover", function() {
+        imgLg.src = img.src;
+        divLg.classList.remove("hiden");
+    });
+  
+    img.addEventListener("mouseleave", function() {
+        divLg.classList.add("hiden");
+    });
+
+    img.addEventListener("click", function() {
+        if (divLg.classList.contains("hiden")) {
+            imgLg.src = img.src;
+            divLg.classList.remove("hiden");          
+        }
+        else {
+            divLg.classList.add("hiden");            
+        }
+      });
+  });
+
+*/
 
 
 
