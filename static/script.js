@@ -213,7 +213,6 @@ loadGestureRecognizer();
 webcamButton = document.getElementById("webcamButton");
 webcamButton.addEventListener("click", enablewebcam);
 
-/*
 const abcImgs = document.querySelectorAll(".abc");
 const imgLg = document.getElementById("aLg");
 const divLg = document.getElementById("abcLg");
@@ -238,8 +237,4 @@ abcImgs.forEach(img => {
         }
       });
   });
-
-*/
-
-
 
