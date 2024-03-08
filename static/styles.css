@@ -1,7 +1,5 @@
 @media (max-width: 576px) {
   .box{
-    margin-right: 0!important;
-    aspect-ratio: 33/25;
     z-index: 10;
   }
 
@@ -12,10 +10,31 @@
 }
 
 @media (max-width: 768px) { 
-  .wrap{
-    flex-wrap: wrap;
+  .boxsContainer{
+    flex-direction: column !important;
+    justify-content: start !important;
+    align-items: center;
   }
+
+  .box{
+    --b--height: calc(45vh - 8rem);
+    --b--width: calc(var(--b--height)/0.78);
+    width: var(--b--width) !important;
+    height: var(--b--height) !important;
+    margin: 2rem 0 2rem 0 !important;
+    top: 0 !important;
+  }
+
  }
+
+body{
+  height: 100vh;
+}
+
+canvas{
+  width: calc(100% - 16px);
+  height: calc(100% - 16px);
+}
 
 #home{
   color: #000000;
@@ -37,6 +56,12 @@
   max-width: 10rem;
 }
 
+.boxsContainer{
+  height: 100%;
+  flex-direction: row;
+  justify-content: center;
+}
+
 .hiden{
   display: none;
 }
@@ -54,16 +79,19 @@
 }
 
 .card-cont{
-    position: absolute;
-    top: -12.5rem;
-    left: calc(50% - 6.25rem);
+  position: absolute;
+  top: -12.5rem;
+  left: calc(50% - 6.25rem);
 }
 
 .box{
-    width: 33rem;
-    aspect-ratio: 33/25;
-    margin: 3rem 1rem 0 0;
-    max-width: 28rem;
+  --b-width: calc(100vw / 2 - 4rem);
+  --b-height: calc(var(--b-width) / 1.32);
+  width: var(--b-width);
+  height: var(--b-height);
+  margin: 3rem 1rem 3rem 1rem;
+  position: relative;
+  top: calc(40% - (var(--b-height) / 2));
 }
 
 .menu{
@@ -83,10 +111,10 @@
 }
 
 video {
-    display: block;
-    transform: rotateY(180deg);
-    -webkit-transform: rotateY(180deg);
-    -moz-transform: rotateY(180deg);
+  display: block;
+  transform: rotateY(180deg);
+  -webkit-transform: rotateY(180deg);
+  -moz-transform: rotateY(180deg);
   }
   
 .videoView p,

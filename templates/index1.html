@@ -10,33 +10,30 @@
         <link href="/static/styles.css" rel="stylesheet">
         <script type="module" src="static/script.js"></script>
         
-
     </head>
-    <body> 
+    <body class="d-flex flex-column"> 
         <nav class="navbar navbar-expand-lg bg-body-tertiary justify-content-start padding">
             <a class="navbar-brand" href="#" type="button" data-bs-toggle="collapse" data-bs-target="#home" aria-expanded="false" aria-controls="home">LSA</a>
             <!--<button id="webcamButton" class="btn btn-outline-dark">Play</button>-->
             <a id="home" class="collapse collapse-horizontal" href="/">Home</a>
         </nav>
-        <div class="d-flex flex-row justify-content-center">
+        <div class="d-flex padding boxsContainer">
             <div id="abc" class="collapse">
                 <img src="static/abc/b.png" class="abc">
                 <img src="static/abc/e.png" class="abc">
                 <img src="static/abc/g.png" class="abc">
             </div>
-            <div class="d-flex flex-row justify-content-evenly padding wrap">  
-                
-                <div id="abcLg" class="hiden">
-                    <img id="aLg" src="">
-                </div>
-                
-                <div class="p-2 card box" id="box">
-                    <video id="webcam" class="object-fit-cover rounded" autoplay playsinline></video>
-                    <canvas class="output_canvas" id="output_canvas" style="position: absolute; left: 0.5rem; top: 0.5rem;"></canvas>
-                </div>
-                <div class="p-2 card box" id="box2">
-                    <p id="gesture_output" class="output fs-3">
-                </div>
+            
+            <div id="abcLg" class="hiden">
+                <img id="aLg" src="">
+            </div>
+            
+            <div class="p-2 card box" id="box">
+                <video id="webcam" class="object-fit-cover rounded" autoplay playsinline></video>
+                <canvas class="output_canvas" id="output_canvas" style="position: absolute; left: 0.5rem; top: 0.5rem;"></canvas>
+            </div>
+            <div class="p-2 card box" id="box2">
+                <p id="gesture_output" class="output fs-3">
             </div>
         </div>
         <ul class="nav fixed-bottom start-50 translate-middle justify-content-center menu">
