@@ -91,7 +91,7 @@ canvas{
   height: var(--b-height);
   margin: 3rem 1rem 3rem 1rem;
   position: relative;
-  top: calc(40% - (var(--b-height) / 2));
+  top: calc(32% - (var(--b-height) / 2));
 }
 
 .menu{
