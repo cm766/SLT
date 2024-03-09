@@ -4,9 +4,12 @@ import cv2
 app = Flask(__name__)
 
 @app.route('/')
-def index():
-    return render_template('index1.html')
+def home():
+    return render_template('index.html')
           
+@app.route('/translator')
+def translator():
+    return render_template('translator.html')
 
 if __name__ == '__main__':
     app.run(debug=True)

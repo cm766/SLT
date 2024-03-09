@@ -11,49 +11,20 @@
         <script type="module" src="static/script.js"></script>
         
     </head>
-    <body> 
-        <nav class="navbar navbar-expand-lg bg-body-tertiary">
-            <div class="container-md">
-                <a class="navbar-brand" href="#">LSA</a>
-                <button id="webcamButton" class="btn btn-outline-dark">Play</button>
-            </div>
+    <body class="d-flex flex-column"> 
+        <nav class="navbar navbar-expand-lg bg-body-tertiary justify-content-start padding">
+            <a class="navbar-brand" href="#">LSA</a>
         </nav>
-        <div id="liveView" class="d-flex flex-column mb-3 videoView">  
-          <div class="d-flex flex-row flex-lg-nowrap flex-md-wrap flex-sm-wrap justify-content-evenly align-content-center container" style="position: relative;">
-            <div class="p-2 card box" id="box">
-              <video id="webcam" class="object-fit-cover rounded" autoplay playsinline></video>
-              <canvas class="output_canvas" id="output_canvas" style="position: absolute; left: 0.5rem; top: 0.5rem;"></canvas>
-            </div>
-            <div class="p-2 card box" id="box2">
-              <p id="gesture_output" class="output fs-3">
-            </div>
-          </div>
-        </div>
-        <ul class="nav fixed-bottom start-50 translate-middle justify-content-center menu">
-            <li class="nav-item">
-                <a class="btn btn-link" href="/">     
-                    <img src="static/icons/home.svg">                                               
-                </a>
-            </li>
-            <li class="nav-item">
-                <button class="btn btn-link" type="button" data-bs-toggle="collapse" data-bs-target="#collapseWidthExample" aria-expanded="false" aria-controls="collapseWidthExample">
-                    <img src="static/icons/help.svg">
-                </button>
-                <div class="card-cont" style="min-height: 120px;">
-                    <div class="collapse collapse-horizontal" id="collapseWidthExample">
-                        <div class="card card-body" style="width: 300px;">
-                            <p>Press play to start detecting</p>
-                            <p>Keep hand position for one second</p>
-                            <p>Stop showing your hand for a second to insert a space in the text</p>
-                        </div>
-                    </div>
+        <div class="d-flex padding boxsContainer">
+            <div class="d-flex justify-content-center align-items-center subDiv">
+                <div class="d-flex flex-column justify-content-start">
+                    <h1>ABC<br>Tranlator</h1>
+                    <h4>sth about the project</h4>
                 </div>
-            </li>
-            <li class="nav-item">
-                <button class="btn btn-link" type="button" data-bs-toggle="offcanvas" data-bs-target="#staticBackdrop" aria-controls="staticBackdrop">
-                    <img src="static/icons/hand.svg">
-                </button>
-            </li>
-        </ul>
+            </div>
+            <div class="d-flex justify-content-center align-items-center subDiv">
+        
+            </div>
+        </div>
     </body>
 </html>

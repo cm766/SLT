@@ -25,6 +25,11 @@
     top: 0 !important;
   }
 
+  .subDiv{
+    height: 50%;
+    width: 100vw !important;
+  }
+
  }
 
 body{
@@ -69,6 +74,10 @@ canvas{
 
 .hiden{
   display: none;
+}
+
+.subDiv{
+  width: 50vw;
 }
 
 .abc{
