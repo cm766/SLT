@@ -86,7 +86,7 @@ const buttons = [{
         sizeY: 40,
         icon: 'static/icons/spacebar.svg',
         borderLine: 2,
-        color: "blue"
+        color: "#4a9d9cbd"
     },
     {
         positionX: 80,
@@ -95,7 +95,7 @@ const buttons = [{
         sizeY: 40,
         icon: 'static/icons/backspace-thin.svg',
         borderLine: 2,
-        color: "blue"
+        color: "#4a9d9cbd"
     }]
 async function predict() {
 
@@ -121,11 +121,11 @@ async function predict() {
     if (results.landmarks) {
         for (const landmarks of results.landmarks) {
             drawingUtils.drawConnectors(landmarks, GestureRecognizer.HAND_CONNECTIONS, {
-                color: "#4dff88",
+                color: "#0D6E6E",
                 lineWidth: 3
             });
             drawingUtils.drawLandmarks(landmarks, {
-                color: "#ff8533",
+                color: "#FF3D3D",
                 lineWidth: 0.03,
                 radius: 3 
             });

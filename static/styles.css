@@ -29,6 +29,7 @@
 
 body{
   height: 100vh;
+  background-color: #0D1F2D;
 }
 
 canvas{
@@ -54,6 +55,10 @@ canvas{
 
 #aLg{
   max-width: 10rem;
+}
+
+.navbar-brand{
+  color: #FF3D3D !important;
 }
 
 .boxsContainer{
@@ -91,14 +96,28 @@ canvas{
   height: var(--b-height);
   margin: 3rem 1rem 3rem 1rem;
   position: relative;
-  top: calc(32% - (var(--b-height) / 2));
+  top: calc(40% - (var(--b-height) / 2));
+  background-color: #1d2e3d;
+  border: 2px solid #4a9d9c;
 }
 
 .menu{
   max-width: 25rem;
-  background-color: #a0a0a0;
-  border: 10px solid #a0a0a0; 
+  background-color: #1d2e3d;
+  border: 2px solid #afffff; 
   border-radius: 30px;
+}
+
+.inst{
+  background-color: #0D1F2D;
+  border: 0.1px solid #afffff;
+  color: #ffe0c8;
+}
+
+.navbar{
+  background-color: #1d2e3d !important;
+  border-top: 2px solid #afffff;
+  border-bottom: 2px solid #afffff;
 }
 
 .container{
@@ -133,4 +152,5 @@ video {
   width: 100%;
   overflow: auto;
   max-height: -webkit-fill-available;
+  color:#ffffff;
 }
