@@ -174,20 +174,20 @@ async function predict() {
                 console.log(checkClick[1]);
                 if (checkClick[1] === "0") {
                     text += " ";
-                    clickedButton([0], buttons, "red");
+                    clickedButton([0], buttons, "#4a9d9c");
                 }
                 else if (checkClick[1] === "1") {
                     if (text.length > 0) {
                         text = text.slice(0, -1);
                     }
-                    clickedButton([1], buttons, "red");
+                    clickedButton([1], buttons, "#4a9d9c");
                 }
             }
         }
         else {
             if (button) {
                 button = false;
-                clickedButton([0, 1], buttons, "blue");
+                clickedButton([0, 1], buttons, "#4a9d9cbd");
             }
         }
         // CREATE ANOTHER ELEMENT TO SHOW PREDICTED CHAR
