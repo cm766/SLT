@@ -219,7 +219,7 @@ const divLg = document.getElementById("abcLg");
 
 abcImgs.forEach( img => {
     img.addEventListener("mouseover", function() {
-        imgLg.src = img.src;
+        lg(img);
         divLg.classList.remove("hiden");
     });
   
@@ -228,18 +228,7 @@ abcImgs.forEach( img => {
     });
 
     img.addEventListener("click", function() {
-        const imgSvg = img.getElementsByTagName("image")[0];
-        console.log(imgSvg[0]);
-        const svgHeight = imgSvg.getAttribute("height");
-        const svgWidth = imgSvg.getAttribute("width");
-        const svgX = imgSvg.getAttribute("x");
-        const svgY = imgSvg.getAttribute("y");
-
-        // Modify the SVG element itself to resize the image:
-        imgLg.setAttribute("height", parseInt(svgHeight.slice(0, -3)) * 4);
-        imgLg.setAttribute("width", parseInt(svgWidth.slice(0, -3)) * 4);
-        imgLg.setAttribute("x", parseInt(svgX) * 4);
-        imgLg.setAttribute("y", parseInt(svgY) * 4);
+        lg(img);
 
         if (divLg.classList.contains("hiden")) {
             divLg.classList.remove("hiden");          
@@ -248,5 +237,22 @@ abcImgs.forEach( img => {
             divLg.classList.add("hiden");            
         }
       });
+
+
+      function lg (img) {
+            const imgSvg = img.getElementsByTagName("image")[0];
+            const svgHeight = imgSvg.getAttribute("height");
+            const svgWidth = imgSvg.getAttribute("width");
+            const svgX = imgSvg.getAttribute("x");
+            const svgY = imgSvg.getAttribute("y");
+            const svgHref = imgSvg.getAttribute("href");
+
+            // Modify the SVG element itself to resize the image:
+            imgLg.setAttribute("height", (parseInt(svgHeight.slice(0, -3)) * 4) + "rem");
+            imgLg.setAttribute("width", (parseInt(svgWidth.slice(0, -3)) * 4) + "rem");
+            imgLg.setAttribute("x", parseInt(svgX) * 4);
+            imgLg.setAttribute("y", parseInt(svgY) * 3.8);
+            imgLg.setAttribute("href", svgHref);
+      }
   });
 

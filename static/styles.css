@@ -60,8 +60,8 @@ h1, h4{
 
 #abcLg{
   position: absolute;
-  top: calc(50% - 3.125rem);
-  left: calc(50% - 3.125rem);
+  top: calc(50% - 8.5rem);
+  left: calc(50vw - 8rem);
   z-index: 50;
 }
 
@@ -85,6 +85,10 @@ h1, h4{
 
 .subDiv{
   width: 50vw;
+}
+
+.abc{
+  z-index: 100;
 }
 
 #abc{
