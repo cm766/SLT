@@ -191,7 +191,7 @@ async function predict() {
             }
         }
         // CREATE ANOTHER ELEMENT TO SHOW PREDICTED CHAR
-        gestureOutput.innerText = `${text}  |${correctPrediction(char, nHands)} ${categoryScore}`;
+        gestureOutput.innerText = `${text}  |${correctPrediction(char, nHands)}`;
     }
 
     // MIGHT BE MODIFIED
