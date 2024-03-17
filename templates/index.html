@@ -12,14 +12,29 @@
         
     </head>
     <body class="d-flex flex-column"> 
-        <nav class="navbar navbar-expand-lg bg-body-tertiary justify-content-start padding">
-            <a class="navbar-brand" href="#">LSA</a>
-        </nav>
+      <nav class="navbar navbar-expand-lg bg-body-tertiary justify-content-start padding">
+        <a class="navbar-brand" href="#">LSA</a>
+        <div class="dropdown">
+          <form action="/idiom" method="post">
+            <button id="lg" class="btn btn-secondary dropdown-toggle" type="submit" data-bs-toggle="dropdown" aria-expanded="false">Es</button>
+            <ul class="dropdown-menu dropdown-menu-dark">
+              <li class="dropdown-item"><a href="#" onclick="document.getElementById('selectedIdiom').value='es'; document.forms[0].submit();">Español (Es)</a></li>
+              <li><hr class="dropdown-divider"></li>
+              <li class="dropdown-item"><a href="#" onclick="document.getElementById('selectedIdiom').value='en'; document.forms[0].submit();">English (En)</a></li>
+            </ul>
+            <input type="hidden" id="selectedIdiom" name="selectedIdiom">
+          </form>
+        </div>
+      </nav>
         <div class="d-flex padding boxsContainer">
             <div class="d-flex justify-content-center align-items-center subDiv">
                 <div class="d-flex flex-column justify-content-start">
                     <h1>ABC<br>Tranlator</h1>
-                    <h4>sth about the project</h4>
+                    {% if idiom == 'es' %}
+                      <h4>Este es un projecto final para CS50</h4>
+                    {% elif idiom == 'en' %}
+                      <h4>This is a CS50 final project</h4>
+                    {% endif %}
                 </div>
             </div>
             <div class="d-flex justify-content-center align-items-center subDiv">

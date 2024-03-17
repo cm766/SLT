@@ -72,3 +72,4 @@ export function clickedButton (buttonIndex, buttonsDict, newColor) {
         buttonsDict[buttonIndex[i]]["color"] = newColor;
     }    
 }
+

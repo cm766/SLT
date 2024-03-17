@@ -238,6 +238,10 @@ abcImgs.forEach( img => {
         }
       });
 
+      const language = document.getElementById("lg");
+
+      language.addEventListener("click", changeLang());
+
 
       function lg (img) {
             const imgSvg = img.getElementsByTagName("image")[0];
