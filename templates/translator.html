@@ -132,9 +132,19 @@
                 <div class="card-cont" style="min-height: 120px;">
                     <div class="collapse collapse-horizontal" id="collapseWidthExample">
                         <div class="card card-body" style="width: 300px;">
-                            <p>Press play to start detecting</p>
-                            <p>Keep hand position for one second</p>
-                            <p>Stop showing your hand for a second to insert a space in the text</p>
+                            {% if idiom == 'es' %}
+                            <p>Haga click en &#9654 para empezar detección</p>
+                            <p>Haga click en &#x23E9 para parar detección y apagar cámara</p>
+                            <p>Mantenga la seña durante un segundo para que sea detectada.</p>
+                            <br>
+                            <a href="/">Volver a las instrucciones</a>
+                            {% elif idiom == 'en' %}
+                            <p>Click &#9654 to start detecting</p>
+                            <p>Click &#x23E9 to stop detecting and turn off camera</p>
+                            <p>To be detected, hold your hand in the letter shape for one second.</p>
+                            <br>
+                            <a href="/">Back to instructions</a>
+                            {% endif %}
                         </div>
                     </div>
                 </div>

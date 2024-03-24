@@ -79,6 +79,25 @@ h1, h4{
   color: #FF3D3D !important;
 }
 
+.start-btn{
+  position: fixed;
+  bottom: 0;
+  left: calc(50% - 3.28rem);
+  margin-bottom: 1.5rem;
+  background-color: #0D1F2D;
+  border: 2px solid #FF3D3D;
+}
+
+.start-btn:hover{
+  background-color: #1d2e3d;
+  border: 2px solid #FF3D3D;
+}
+
+.start{
+  color: #FF3D3D;
+  text-decoration: none;
+}
+
 .dropdown-menu{
   position: absolute;
   left: -6.5rem !important;
