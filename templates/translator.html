@@ -13,7 +13,7 @@
     </head>
     <body class="d-flex flex-column"> 
         <nav class="navbar navbar-expand-lg justify-content-between bg-body-tertiary padding">
-            <a class="navbar-brand" href="#">LSA</a>
+            <a class="navbar-brand" href="/"><img src="static/icons/LogoLSAred.svg" class="d-block" alt="Traductor LSA" style="max-width: 7rem;"></a>
             <div class="dropdown">
               <form action="/translator" method = "post">
                 <button id="lg" class="btn btn-secondary dropdown-toggle" type="submit" data-bs-toggle="dropdown" aria-expanded="false">{{ idiom }}</button>
@@ -129,7 +129,7 @@
                 <button class="btn btn-link" type="button" data-bs-toggle="collapse" data-bs-target="#collapseWidthExample" aria-expanded="false" aria-controls="collapseWidthExample">
                     <img src="static/icons/help.svg">
                 </button>
-                <div class="card-cont" style="min-height: 120px;">
+                <div class="card-cont" style="min-height: 120px; bottom: 6rem">
                     <div class="collapse collapse-horizontal" id="collapseWidthExample">
                         <div class="card card-body" style="width: 300px;">
                             {% if idiom == 'es' %}

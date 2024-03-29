@@ -30,6 +30,10 @@
     width: 100vw !important;
   }
 
+  .carousel-indicators{
+    display: none;
+  }
+
  }
 
 body{
@@ -45,8 +49,13 @@ canvas, video{
   left: 0.5rem !important;
 }
 
-h1, h4{
+h1, h2{
   color: #ffffff;
+}
+
+#collapseWidthExample{
+  position: relative;
+  bottom: 6rem;
 }
 
 #home{
@@ -75,6 +84,18 @@ h1, h4{
   max-width: 10rem;
 }
 
+.title{
+  font-size: 3rem;
+}
+
+.subtitle{
+  font-size: 1rem;
+}
+
+.carousel-indicators{
+  bottom: -1rem;
+}
+
 .navbar-brand{
   color: #FF3D3D !important;
 }
@@ -86,11 +107,23 @@ h1, h4{
   margin-bottom: 1.5rem;
   background-color: #0D1F2D;
   border: 2px solid #FF3D3D;
+  max-width: fit-content;
 }
 
 .start-btn:hover{
   background-color: #1d2e3d;
   border: 2px solid #FF3D3D;
+}
+
+.carousel-caption{
+  position: unset !important;
+}
+
+.active{
+  display: flex !important;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 .start{
@@ -112,6 +145,7 @@ h1, h4{
   height: 90%;
   flex-direction: row;
   justify-content: center;
+  margin-bottom: 4rem;
 }
 
 .hiden{

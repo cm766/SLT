@@ -13,7 +13,7 @@
     </head>
     <body class="d-flex flex-column"> 
       <nav class="navbar navbar-expand-lg justify-content-between bg-body-tertiary padding">
-        <a class="navbar-brand" href="#">LSA</a>
+        <a class="navbar-brand" href="/"><img src="static/icons/LogoLSAred.svg" class="d-block" alt="Traductor LSA" style="max-width: 7rem;"></a>
         <div class="dropdown">
           <form action="/" method = "post">
             <button id="lg" class="btn btn-secondary dropdown-toggle" type="submit" data-bs-toggle="dropdown" aria-expanded="false">{{ idiom }}</button>
@@ -28,12 +28,15 @@
       </nav>
         <div class="d-flex padding boxsContainer">
             <div class="d-flex justify-content-center align-items-center subDiv">
-                <div class="d-flex flex-column justify-content-start">
-                    <h1>ABC<br>Tranlator</h1>
+                <div class="d-flex flex-column justify-content-center align-items-center">
+                    <svg class="abc" width="90%" height="100%" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                      <image href="static/icons/LogoLSAblue.svg" x="10" y="-0" width="100%"></image>
+                    </svg>
+                    <br><br>
                     {% if idiom == 'es' %}
-                      <h4>Este es un projecto final para CS50</h4>
+                      <h2 class="subtitle">Traductor de Lenguaje de Señas Argentino mediante deletreo</h2>
                     {% elif idiom == 'en' %}
-                      <h4>This is a CS50 final project</h4>
+                      <h2 class="subtitle">Argentinian Sign Lenguage Translator through fingerspelling</h2>
                     {% endif %}
                 </div>
             </div>
@@ -46,7 +49,7 @@
                     </div>
                     <div class="carousel-inner">
                       <div class="carousel-item active">
-                        <img src="static/instructions/bar.png" class="d-block w-100" alt="...">
+                        <img src="static/instructions/bar.png" class="d-block w-75" alt="...">
                         <div class="carousel-caption d-block">
                           {% if idiom == 'es' %}
                           <h5>Menú</h5>
@@ -58,7 +61,7 @@
                         </div>
                       </div>
                       <div class="carousel-item">
-                        <img src="static/instructions/handGestures.png" class="d-block w-100" alt="...">
+                        <img src="static/instructions/handGestures.png" class="d-block w-75" alt="...">
                         <div class="carousel-caption d-block">
                           {% if idiom == 'es' %}
                           <h5>Agrandar imagen de una seña</h5>
@@ -70,7 +73,7 @@
                         </div>
                       </div>
                       <div class="carousel-item">
-                        <img src="static/instructions/virtualBttns.png" class="d-block w-100" alt="...">
+                        <img src="static/instructions/virtualBttns.png" class="d-block w-75" alt="...">
                         <div class="carousel-caption d-block">
                           {% if idiom == 'es' %}
                           <h5>Borrar o agregar un espacio</h5>
@@ -81,7 +84,6 @@
                           {% endif %}
                         </div>
                       </div>
-                    </div>
                     <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
                       <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                       <span class="visually-hidden">Previous</span>
@@ -93,6 +95,6 @@
                   </div>
             </div>
         </div>
-        <button class="btn btn-secondary start-btn"><a href="/translator" class="start">{% if idiom == 'es' %} Comenzar {% elif idiom == 'en' %} Try {% endif %}</a></button>
+        <button class="btn btn-secondary start-btn"><a class="start" href="/translator">{% if idiom == 'es' %} Comenzar {% elif idiom == 'en' %} Try {% endif %}</a></button>
     </body>
 </html>
