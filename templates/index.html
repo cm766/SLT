@@ -13,7 +13,7 @@
     </head>
     <body class="d-flex flex-column"> 
       <nav class="navbar navbar-expand-lg justify-content-between bg-body-tertiary padding">
-        <a class="navbar-brand" href="/"><img src="static/icons/LogoLSAred.svg" class="d-block" alt="Traductor LSA" style="max-width: 7rem;"></a>
+        <a href="/"><img src="static/icons/LogoLSAred.svg" class="d-block" alt="Traductor LSA" style="max-width: 7rem;"></a>
         <div class="dropdown">
           <form action="/" method = "post">
             <button id="lg" class="btn btn-secondary dropdown-toggle" type="submit" data-bs-toggle="dropdown" aria-expanded="false">{{ idiom }}</button>
@@ -34,9 +34,9 @@
                     </svg>
                     <br><br>
                     {% if idiom == 'es' %}
-                      <h2 class="subtitle">Traductor de Lenguaje de Señas Argentino mediante deletreo</h2>
+                      <h2 class="subtitle carousel-caption">Traductor de Lenguaje de Señas Argentino mediante deletreo</h2>
                     {% elif idiom == 'en' %}
-                      <h2 class="subtitle">Argentinian Sign Lenguage Translator through fingerspelling</h2>
+                      <h2 class="subtitle carousel-caption">Argentinian Sign Lenguage Translator through fingerspelling</h2>
                     {% endif %}
                 </div>
             </div>

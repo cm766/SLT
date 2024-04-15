@@ -6,7 +6,6 @@
   .menu {
     min-width: 12rem;
   }
-
 }
 
 @media (max-width: 768px) { 
@@ -35,6 +34,7 @@
   }
 
  }
+
 
 body{
   height: 100vh;
@@ -94,10 +94,6 @@ h1, h2{
 
 .carousel-indicators{
   bottom: -1rem;
-}
-
-.navbar-brand{
-  color: #FF3D3D !important;
 }
 
 .start-btn{
@@ -188,7 +184,7 @@ h1, h2{
   --b-height: calc(var(--b-width) / 1.32);
   width: var(--b-width);
   height: var(--b-height);
-  margin: 3rem 1rem 3rem 1rem;
+  margin: 10vhrem 1rem 3rem 1rem;
   position: relative;
   top: calc(35% - (var(--b-height) / 2));
   background-color: #1d2e3d;
@@ -212,7 +208,6 @@ h1, h2{
   background-color: #1d2e3d !important;
   border-top: 2px solid #afffff;
   border-bottom: 2px solid #afffff;
-  height: 10%;
 }
 
 .container{
