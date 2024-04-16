@@ -3,19 +3,19 @@ import cv2
 
 app = Flask(__name__)
 
-idiom = 'es'  # Global variable
+idiom = 'es' 
 
 @app.route('/', methods=['POST', 'GET'])
-def home():  # Pass idiom as an argument
+def home():  
     if request.method == "POST":
         changeIdiom(request.form.get('selectedIdiom'))
-    return render_template('index.html', idiom=idiom)  # Pass idiom to template
+    return render_template('index.html', idiom=idiom)  
 
 @app.route('/translator', methods=['POST', 'GET'])
 def translator():
     if request.method == "POST":
         changeIdiom(request.form.get('selectedIdiom'))
-    return render_template('translator.html', idiom=idiom)  # Pass idiom as well
+    return render_template('translator.html', idiom=idiom) 
 
 if __name__ == '__main__':
     app.run(debug=True)
