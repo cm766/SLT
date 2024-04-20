@@ -184,7 +184,7 @@ h1, h2{
   --b-height: calc(var(--b-width) / 1.32);
   width: var(--b-width);
   height: var(--b-height);
-  margin: 10vhrem 1rem 3rem 1rem;
+  margin: 10vh 1rem 3rem 1rem;
   position: relative;
   top: calc(35% - (var(--b-height) / 2));
   background-color: #1d2e3d;
@@ -237,6 +237,7 @@ video {
   -webkit-transform: rotateY(180deg);
   -moz-transform: rotateY(180deg);
 }
+
 .output {
   display: none;
   width: 100%;
@@ -249,6 +250,7 @@ video {
 ::-webkit-scrollbar {
   width: 3px;
 }
+
 
 ::-webkit-scrollbar-track {
   background: #afffff;

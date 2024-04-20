@@ -1,6 +1,6 @@
 // Import mediapipe library
 import { GestureRecognizer, FilesetResolver, DrawingUtils } from "https://cdn.jsdelivr.net/npm/@mediapipe/tasks-vision@0.10.3";
-// Due to model innacuracy corrections are needed
+// Import own functions
 import {correctPrediction, drawButtons, checkClickButtons, clickedButton} from "./helpers.js"
 
 let gestureRecognizer;
@@ -14,6 +14,7 @@ let webcamValues = webcam.getBoundingClientRect()
 let videoWidth = document.getElementById("box").getBoundingClientRect()["width"];
 let videoHeight = videoWidth -  120;
 
+// Get elements for detection and tranlation
 const video = document.getElementById("webcam");
 const canvasElement = document.getElementById("output_canvas");
 const canvasCtx = canvasElement.getContext("2d");
@@ -22,6 +23,7 @@ const box = document.getElementById("box")
 const box2 = document.getElementById("box2")
 
 // Wait for Gesture Recognizer to load
+// Set up model 
 const loadGestureRecognizer = async () => {
     const vision = await FilesetResolver.forVisionTasks("https://cdn.jsdelivr.net/npm/@mediapipe/tasks-vision@0.10.3/wasm");
     gestureRecognizer = await GestureRecognizer.createFromOptions(vision, {
@@ -49,6 +51,7 @@ function enablewebcam(event) {
         return;
     }
 
+    // Turn off detection ans stop streaming 
     if (webcamRunning === true) {
         webcamRunning = false;
         webcamButtonImg.src = "static/icons/play1.svg"
@@ -57,6 +60,7 @@ function enablewebcam(event) {
             video.srcObject.getTracks().forEach(track => track.stop()); 
         }
     }
+    // Enable webcam and start stream displaying and recognition
     else {
         webcamRunning = true;
         webcamButtonImg.src = "static/icons/pause1.svg"  
@@ -79,6 +83,7 @@ let time1 = 0;
 let time2 = 0;
 let button = false;
 
+// Virtual button
 const buttons = [{
         positionX: 15,
         positionY: 25,
@@ -97,8 +102,11 @@ const buttons = [{
         borderLine: 2,
         color: "#4a9d9cbd"
     }]
+
+// Recognition function
 async function predict() {
 
+    // Get webcam stream size
     webcamValues = webcam.getBoundingClientRect()
 
     let nowInMs = Date.now();
@@ -107,7 +115,7 @@ async function predict() {
         results = gestureRecognizer.recognizeForVideo(video, nowInMs);
     }
 
-    // Update size
+    // Update html elements size
     canvasCtx.save();
     canvasCtx.clearRect(0, 0, canvasElement.width, canvasElement.height);
     const drawingUtils = new DrawingUtils(canvasCtx);
@@ -118,6 +126,7 @@ async function predict() {
     canvasElement.width = webcamValues["width"];
     webcam.style.width = videoWidth;
 
+    // Check if hand is detected 
     if (results.landmarks) {
         for (const landmarks of results.landmarks) {
             drawingUtils.drawConnectors(landmarks, GestureRecognizer.HAND_CONNECTIONS, {
@@ -136,7 +145,7 @@ async function predict() {
     drawButtons(canvasCtx, buttons);
     canvasCtx.restore();
 
-    // If sign is detected for more than 5" is added to text
+    // If sign is detected for more than 1000 ms is added to text
     if (results.gestures.length > 0) {
         gestureOutput.style.display = "block";
         gestureOutput.style.width = videoWidth;
