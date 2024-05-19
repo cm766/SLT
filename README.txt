@@ -1,7 +1,7 @@
 Translator and index
     description of the layout
         The layout was designed based on the idea of adaptivity.
-        Accesibility migh need to be improved (INVESTIGATE)
+        Accesibility might need to be improved (INVESTIGATE)
     decisions and changes
         About some elements:
             Alphabet sign languge menu (check out name)
@@ -27,6 +27,11 @@ Script
         Mediapipe is an open-source framework for building and deploying 
          machine-learning pipelines. I re-trained a mediapipe model.
     Behavour of the algorithm
+        first enables webcam
+        check sif new framework is avaiable and stores it in a variable. if a hand is detected the landmark is shown.
+        if a letter is recognized it is shown to the user and latter added to the text if the letter detected is the same for 1'.
+        In order to do that two variable are implemented. char is updated every framework and char0, every time a different variable is detected.
+        if the difference between the last time char0 was updated and the current time         
     Detection settings
     Funcionality of the mediapipe imports
     Interactivity with templates
