@@ -28,24 +28,38 @@ Script
          machine-learning pipelines. I re-trained a mediapipe model.
     Behavour of the algorithm
         first enables webcam
-        check sif new framework is avaiable and stores it in a variable. if a hand is detected the landmark is shown.
+        check if new framework is avaiable and stores it in a variable. if a hand is detected the landmark is shown.
         if a letter is recognized it is shown to the user and latter added to the text if the letter detected is the same for 1'.
         In order to do that two variable are implemented. char is updated every framework and char0, every time a different variable is detected.
         if the difference between the last time char0 was updated and the current time         
     Detection settings
     Funcionality of the mediapipe imports
-    Interactivity with templates
+        GestureRecognizer 
+        FilesetResolver 
+        DrawingUtils
+
+        GestureRecognizer: This class is the core component for gesture recognition. It allows you to load a pre-trained machine learning model that can identify specific hand gestures from video input. You can configure the model to use the CPU or GPU for processing, and specify the number of hands to track in the video.
+
+        FilesetResolver: This class helps you manage the resources needed by the MediaPipe models. It takes care of resolving the location of the model files and ensures they are loaded correctly. In web-based applications, it might fetch the model files from a remote server.
+
+        DrawingUtils: This class provides utility functions for visualizing the results of MediaPipe tasks. This could include drawing landmarks detected on the hand or highlighting recognized gestures on the video frame.
+
+        Interactivity with templates
 
 helpers
     Explain the purpuse of each function
-    "correctPrediction()"
+    correctPrediction: due to an inaccuracy issue this function is implemented to correct it based on some previous investigation 
+    drawButtons: draws the space and delete buttons shapes onto the canvas 
+    checkClickButtons: detect when a buton is clicked and returns its index
+    clickedButton: change the color of the button when its clicked
 
-Model Training
-    Library implemented
-    Mention the discarded options 
-    Dataset search
-    Creation of the dataset and techniches implemented
-    Best models results and final choice. Explain reason.
+Model Training 
+    Library implemented: mediapipe 
+    Mention the discarted options
+    Dataset search: the original idea was to use the LSA dataset, formed by ??? videos. But as it didnt fit with the requirements of the project i create my own dataset.
+    add characteristics of the dataset.
+    Creation of the dataset and techniches implemented: background, different persons, data argumentation.
+    Best models results and final choice. Explain reason. 
 
 Future intentions
     3d animation

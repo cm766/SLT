@@ -1,6 +1,7 @@
-for i in range(5):
-    especie= input("ingresar especie (vaca, cerdo, cabra): ")
-    estado= input()
+n = int(input("Ingrese cantidad de fichas: "))
+mayor = 0
 
-    print(especie)
-    print(estado)
+for i in range(r):
+    ficha = int(input(""))
+    if mayor < ficha:
+        mayor = ficha
