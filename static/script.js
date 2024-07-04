@@ -264,5 +264,15 @@ abcImgs.forEach( img => {
             imgLg.setAttribute("y", parseInt(svgY) * 3.8);
             imgLg.setAttribute("href", svgHref);
       }
+
+const read = document.getElementById("read");
+
+if ("speechSynthesis" in window) {
+    read.onclick = () => {
+      var msg = new SpeechSynthesisUtterance(text);
+      speechSynthesis.speak(msg);
+    };
+    read.disabled = false;
+  }
   });
 
