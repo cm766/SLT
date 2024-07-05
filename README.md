@@ -1,5 +1,5 @@
 # TRADUCTOR LSA
-#### Video Demo:
+#### Video Demo: [Traductor LSA](https://youtu.be/yXlxFjmW_Y8)
 #### Description: 
 
 This web application facilitates the translation of Argentinian Sign Language gestures into Spanish text using fingerspelling recognition.
